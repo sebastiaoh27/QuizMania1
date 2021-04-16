@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuizMania</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body class = "body" id="body">
+
+  <div class = "left" id="left">
+    <ul class="left-content">
+      <li class="menu">
+        <i id="close-menu" class="material-icons menu-buttons" style="font-size: 35px" onclick="closeMenu()">menu</i>
+      </li>
+        <li id="home" class="home left-button" onclick="goHome()">
+              <i class="material-icons icon" style="font-size: 25px">home</i>
+              <div class="button-text">Home</div>
+        </li>
+      <li id="create-room" class="create-room left-button" onclick="goCreateRoom()">
+        <i class="material-icons icon" style="font-size: 25px">add_circle_outline</i>
+        <div class="button-text">Create Room</div>
+      </li>
+      <li id="help" class="help left-button" onclick="goHelp()">
+        <i class="material-icons icon" style="font-size: 25px">help_outline</i>
+        <div class="button-text">Help</div>
+      </li>
+      <li id="contact" class="contact left-button" onclick="goContact()">
+        <i class="material-icons icon" style="font-size: 25px">phone</i>
+        <div class="button-text">Contact Us</div>
+      </li>
+    </ul>
+  </div>
+  <div id="center" class="center">
+    <div id="title" class="title">
+      <i id="open-menu" class="material-icons outer-menu menu-buttons" style="font-size: 35px" onclick="openMenu()">menu</i>
+      <h1 class="header">QuizMania</h1>
+    </div>
+    <div id="description" class="description">
+      <h5>QuizMania is a brand new quiz website where you can compete with your friends to see who knows more about various subjects</h5>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="javascript/menu.js"></script>
+  <script src="javascript/home.js"></script>
+
+
+
+</body>

@@ -1,0 +1,22 @@
+{
+  "answerTest1": {
+    "id": 0,
+    "name": "animals",
+    "correctAnswer": "false"
+  },
+  "answerTest2": {
+    "id": 1,
+    "name": "trees",
+    "correctAnswer": "false"
+  },
+  "answerTest3": {
+    "id": 2,
+    "name": "fish",
+    "correctAnswer": "false"
+  },
+  "answerTest4": {
+    "id": 3,
+    "name": "fruit",
+    "correctAnswer": "true"
+  }
+}
