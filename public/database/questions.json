@@ -1,7 +1,1 @@
-{
-  "testQuestion": {
-    "id": 0,
-    "name": "Is this a question?",
-    "quizId": 0
-  }
-}
+{"question0":{"id":0,"name":"Is this a question?","quizId":0}}
