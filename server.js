@@ -5,6 +5,10 @@ var indexRouter = require("./routes/index")
 var roomRest = require("./routes/rooms")
 var userRest = require("./routes/users")
 var quizRest = require("./routes/quizzes")
+var questionRest = require("./routes/questions")
+var answerRest = require("./routes/answers")
+var themeRest = require("./routes/themes")
+
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 app.use(jsonParser)
@@ -43,11 +47,31 @@ app.get('/quizzes',quizRest)
 app.get('/quiz/:id',quizRest)
 app.get('/quizzes/:themeId',quizRest)
 app.patch('/setTheme/:id',quizRest)
-app.patch('/deleteQuiz/:id',quizRest)
+app.delete('/deleteQuiz/:id',quizRest)
 
+//question
+app.post('/createQuestion',questionRest)
+app.get('/questions',questionRest)
+app.get('/question/:id',questionRest)
+app.get('/questions/:roomId',questionRest)
+app.patch('/editQuestion/:id',questionRest)
+app.delete('/deleteQuestion/:id',questionRest)
 
+//answer
+app.post('/createAnswer',answerRest)
+app.get('/answers',answerRest)
+app.get('/answer/:id',answerRest)
+app.get('/answers/:questionId',answerRest)
+app.patch('/editAnswer/:id',answerRest)
+app.patch('/setCorrectAnswer/:id',answerRest)
+app.delete('/deleteAnswer/:id',answerRest)
 
-
+//theme
+app.post('/createTheme',themeRest)
+app.get('/themes',themeRest)
+app.get('/theme/:id',themeRest)
+app.patch('/editTheme/:id',themeRest)
+app.delete('/deleteTheme/:id',themeRest)
 
 
 io.on("connection", client => {
