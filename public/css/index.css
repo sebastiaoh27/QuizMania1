@@ -1,3 +1,5 @@
+
+
 .header {
   margin: 0;
   font-family: 'Noto Serif JP',serif;
@@ -5,8 +7,8 @@
   text-align: center;
 }
 
-.description {
-  font-family: 'Noto Serif JP',serif;
+.content {
+
   font-size: 40px;
   padding: 0 20%;
   text-align: center;
@@ -101,6 +103,15 @@
   margin: 0;
 }
 
+.createRoom {
+
+  padding: 5% 20% 5% 20%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 0 200px
+}
+
 
 .icon {
   margin-left: 10%;
@@ -113,15 +124,31 @@
   cursor: pointer;
 }
 
+#passwordContainer {
+  visibility: hidden;
+  padding: 0 20%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 0 200px
 
+}
 
+.passwordText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+}
 
+.clipBoard :hover {
 
+  cursor: pointer;
+  color: aquamarine;
+}
 
-
-
-
-
-
-
-
+#password {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 20px;
+  margin-right: 25%;
+}

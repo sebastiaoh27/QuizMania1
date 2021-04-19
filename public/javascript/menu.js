@@ -2,7 +2,7 @@
 
 function openMenu() {
     document.getElementById("title").style.zIndex = "0"
-    document.getElementById("description").style.zIndex = "0"
+    document.getElementById("content").style.zIndex = "0"
     setTimeout(function () {
         document.getElementById("body").style.gridTemplateColumns = "0.25fr 1fr";
         var left = document.getElementById("left");
@@ -30,7 +30,7 @@ function closeMenu() {
     left.style.width = "0"
     setTimeout(function () {
         document.getElementById("title").style.zIndex = "2"
-        document.getElementById("description").style.zIndex = "2"
+        document.getElementById("content").style.zIndex = "2"
         document.getElementById("open-menu").style.visibility = "visible";
     },200)
 
@@ -48,4 +48,7 @@ function goHelp() {
 }
 function goContact() {
     location.href = '/contact'
+}
+function goJoinRoom() {
+    location.href = '/room'
 }

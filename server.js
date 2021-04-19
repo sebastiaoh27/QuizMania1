@@ -23,6 +23,7 @@ app.get('/',indexRouter);
 app.get('/help',indexRouter);
 app.get('/contact',indexRouter);
 app.get('/createRoom',indexRouter);
+app.get('/room',indexRouter);
 
 //room
 app.get('/rooms',roomRest);

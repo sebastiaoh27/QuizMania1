@@ -18,4 +18,8 @@ router.get('/createRoom', function (req,res,next) {
     res.sendFile("createRoom.html",{root: "./public"})
 })
 
+router.get('/room', function (req,res,next) {
+    res.sendFile("room.html",{root: "./public"})
+})
+
 module.exports = router;
