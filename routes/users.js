@@ -12,6 +12,7 @@ var id = 0;
 
 //Create
 router.post('/createUser',urlencodedParser,function (req,res) {
+
     fs.readFile(path,'utf8',function (err,data) {
         var users = JSON.parse(data);
         while (users["user"+id]) {
@@ -21,6 +22,7 @@ router.post('/createUser',urlencodedParser,function (req,res) {
             "id":id,
             "name": req.body.name,
             "roomId": parseInt(req.body.roomId),
+            "role": req.body.role,
             "points": 0
         }
         fs.writeFile(path,JSON.stringify(users),'utf8',function (err) {
@@ -28,6 +30,7 @@ router.post('/createUser',urlencodedParser,function (req,res) {
                 return console.log(err);
             }
         })
+        console.log(users["user"+id])
         res.end(JSON.stringify(users["user"+id]))
     })
 })
@@ -49,6 +52,7 @@ router.get('/user/:id',function (req,res) {
 
 router.get('/users/:roomId',function (req,res) {
     fs.readFile(path,'utf8',function (err,data) {
+        console.log(data)
         var users = JSON.parse(data);
         var inRoom = {}
         for (var user in users) {
@@ -64,18 +68,18 @@ router.get('/winner/:roomId',function (req,res){
     fs.readFile(path,'utf8',function (err,data) {
         var users = JSON.parse(data);
         var winner = {};
-        var count = 0;
+        var podium = []
+        var count = 0
         for (var user in users) {
-            var u = users[user];
-            if(u.roomId == parseInt(req.params.roomId)) {
-                if (u.points > count) {
-                    winner = {}
-                    winner[user] = u
-                    count = u.points
-                } else if (u.points == count) {
-                    winner[user] = u
-                }
+            if (users[user].roomId == req.params.roomId){
+                podium.push(users[user])
             }
+        }
+        podium.sort((a,b)=>{a[1]-b[1]})
+        for (var p in podium){
+
+            if (count >= 3)break;
+            winner["user"+p] = podium[p]
         }
         res.end(JSON.stringify(winner))
     })

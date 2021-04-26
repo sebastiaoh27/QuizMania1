@@ -35,6 +35,19 @@ router.post('/createRoom',urlencodedParser,function (req,res) {
 })
 
 //Read
+router.get('/joinRoom/:password',function (req,res) {
+    fs.readFile(path,'utf8',function (err,data) {
+        var rooms = JSON.parse(data);
+        var r = null;
+        for (var room in rooms) {
+            if (rooms[room].password === req.params.password) {
+                r = rooms[room];
+                break;
+            }
+        }
+        res.end(JSON.stringify(r));
+    })
+})
 
 router.get('/rooms',function (req,res) {
         fs.readFile(path, 'utf8',function (err,data){

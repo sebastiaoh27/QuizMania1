@@ -1,1 +1,1 @@
-{"quiz0":{"id":0,"name":"quizTest","themeId":0},"quiz1":{"id":1,"name":"test","themeId":0},"quiz2":{"id":2,"name":"test1","themeId":0}}
+{"quiz0":{"id":0,"name":"Capitals of the World","themeId":0, "description": "See how much you know about the capitals of the world"},"quiz1":{"id":1,"name":"Guess the animal","themeId":1, "description": "Try to guess the animals shown"}}

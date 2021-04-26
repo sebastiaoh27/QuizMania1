@@ -49,6 +49,25 @@ function goHelp() {
 function goContact() {
     location.href = '/contact'
 }
-function goJoinRoom() {
-    location.href = '/room'
+
+function copyToClipboard() {
+    var textArea = document.createElement("textarea")
+    document.body.appendChild(textArea)
+    console.log(sessionStorage.getItem("pass"))
+    textArea.value = sessionStorage.getItem("pass")
+    textArea.select()
+    try {
+        document.execCommand('copy');
+    } catch (e) {
+        console.log(e)
+    }
+    document.body.removeChild(textArea)
+
+
 }
+
+function goHostRoom() {
+    location.href = '/hostRoom'
+    sessionStorage.setItem("stage","quiz")
+}
+
