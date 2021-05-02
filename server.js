@@ -20,7 +20,7 @@ const io = require('socket.io')(server);
 server.listen(9999);
 app.use(express.static(__dirname + '/public'))
 app.get('/',indexRouter);
-app.get('/help',indexRouter);
+app.get('/createQuiz',indexRouter);
 app.get('/contact',indexRouter);
 app.get('/createRoom',indexRouter);
 app.get('/room',indexRouter);

@@ -1,9 +1,18 @@
 socket.on("connect", ()=> {
     document.getElementById("header").innerHTML = (JSON.parse(sessionStorage.getItem("room"))).password
-
+    document.getElementById("selector-icon").addEventListener('click',()=>{
+        document.getElementById("selector-icon").classList.add('is-focused');
+    })
+    sessionStorage.setItem("theme",0)
     load();
 })
 
+var history = []
+var sports = []
+var arts = []
+var scienceList = []
+var geography = []
+var entertainment = []
 
 
 function selectQuiz(id) {
@@ -29,9 +38,11 @@ function selectQuiz(id) {
 function load() {
     document.getElementById("quizBox").innerHTML = ""
     if (sessionStorage.getItem("stage") == "quiz") {
+        document.getElementById("selector-box").style.visibility = "visible"
         loadQuiz()
     }
     if (sessionStorage.getItem("stage") == "questions") {
+        document.getElementById("selector-box").style.visibility = "hidden"
         loadQuestions()
     }
     if (sessionStorage.getItem("stage") == "end") {
@@ -45,21 +56,43 @@ function loadQuiz() {
   req.onreadystatechange = function() {
       if (req.readyState == XMLHttpRequest.DONE) {
           var res = JSON.parse(req.responseText)
-
+          sessionStorage.setItem("quizzes",JSON.stringify(res))
+          var t = parseInt(sessionStorage.getItem("theme"))
+          console.log(t)
+          quizBox.innerHTML = ""
           for (var r in res) {
+              console.log(t-1 !== res[r].themeId)
+              console.log(t !== 0)
+              if (t-1 !== res[r].themeId && t !== 0){
+                  console.log("cc")
+                  continue;
+              }
               var icon = null
               switch (res[r].themeId) {
-                  case 0: icon = "public"
+                  case 0:
+
+                      icon = "public"
                       break;
-                  case 1: icon = "science"
+                  case 1:
+
+                      icon = "science"
                       break;
-                  case 2: icon = "history_edu"
+                  case 2:
+
+                      icon = "history_edu"
                       break;
-                  case 3: icon = "pallete"
+                  case 3:
+
+                      icon = "color_lens"
                       break;
-                  case 4: icon = "sports_soccer"
+                  case 4:
+
+                      icon = "sports_soccer"
                       break;
-                  case 5: icon = "movie"
+                  case 5:
+
+                      icon = "movie"
+                      break;
               }
             quizBox.innerHTML += "<li id=\""+ res[r].id+"\" class=\"mdl-list__item mdl-list__item--three-line quiz\" onclick=\"selectQuiz(this.id)\">\n" +
                 "              <span class=\"mdl-list__item-primary-content quizText\">\n" +
@@ -96,4 +129,36 @@ function quizPage(){
     load()
     socket.emit("quizPage")
 }
+
+function selectTheme(id) {
+    var selector = document.getElementById("selector-label")
+    sessionStorage.setItem("theme",id)
+    switch (parseInt(id)) {
+        case 0:
+            selector.textContent = "All"
+            break;
+        case 1:
+
+            selector.textContent = "Geography"
+            break;
+        case 2:
+            selector.textContent = "Science"
+            break;
+        case 3:
+
+            selector.textContent = "Arts"
+            break;
+        case 4:
+            selector.textContent = "History"
+            break;
+        case 5:
+            selector.textContent = "Entertainment"
+            break;
+        case 6:
+            selector.textContent = "Sports"
+    }
+    loadQuiz()
+}
+
+
 

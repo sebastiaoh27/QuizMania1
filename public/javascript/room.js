@@ -1,6 +1,6 @@
 const socket = io.connect("ws://localhost:9999");
 
-var url = "http://localhost:9999"
+
 var clicked = false
 var answered = false
 var pointsPossible = 0;
@@ -118,7 +118,7 @@ function loadAnswers(id) {
             var res = JSON.parse(req.responseText)
             sessionStorage.setItem("answers",JSON.stringify(res))
             for (var r in res) {
-                answers.innerHTML += "<li id=\""+ res[r].id+ "\" class=\"mdl-list__item answer\" onclick=\"selectAnswer(this.id)\">\n" +
+                answers.innerHTML += "<li id=\"a"+res[r].id+ "\" class=\"mdl-list__item answer\" onclick=\"selectAnswer(this.id)\">\n" +
                     "    <span class=\"mdl-list__item-primary-content\">\n" +
                     "      "+res[r].name+" \n" +
                     "    </span>\n" +
@@ -161,8 +161,8 @@ function loadQuestions() {
                 loadAnswers(res[r].id)
 
                 const interval = setInterval(()=>{
-                    widthString = document.getElementById("prog").style.width
-                    width = parseInt(widthString.substring(0,widthString.length))
+                    var widthString = document.getElementById("prog").style.width
+                    var width = parseInt(widthString.substring(0,widthString.length))
                     document.getElementById("prog").style.width = width - 1 + "%"
                 },100)
                 await sleep(11000);
@@ -182,12 +182,13 @@ function loadQuestions() {
 }
 
 function selectAnswer(id) {
+    console.log(answered + " " + clicked)
     if (!clicked && !answered){
-        widthString = document.getElementById("prog").style.width
-        width = parseInt(widthString.substring(0,widthString.length))
+        var widthString = document.getElementById("prog").style.width
+        var width = parseInt(widthString.substring(0,widthString.length))
         pointsPossible = width * 10
         document.getElementById(id).style.backgroundColor = "#b3d4fc"
-        var answer = JSON.parse(sessionStorage.getItem("answers"))["answer"+id]
+        var answer = JSON.parse(sessionStorage.getItem("answers"))["answer"+id.substring(1)]
         sessionStorage.setItem("selectedAnswer",JSON.stringify(answer))
         clicked =true
     }
@@ -204,7 +205,7 @@ function showAnswer() {
     else if (selectedAnswer && selectedAnswer.id === correctAnswer.id) {
         addPoints(pointsPossible)
     }
-    document.getElementById(correctAnswer.id).style.backgroundColor = "#a8fc9c"
+    document.getElementById("a"+correctAnswer.id).style.backgroundColor = "#a8fc9c"
 
 }
 
@@ -230,7 +231,7 @@ function addPoints(points) {
 }
 
 socket.on("addPoints",(user)=>{
-    
+
     var u = JSON.parse(sessionStorage.getItem("user"))
     if (user.id != u.id){
         document.getElementById(user.id).children[0].children[1].innerHTML = user.points +" Points"

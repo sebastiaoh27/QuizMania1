@@ -21,6 +21,7 @@ router.post('/createQuiz',urlencodedParser,function (req,res) {
         quizzes["quiz" + id] = {
             "id":id,
             "name": req.body.name,
+            "description": req.body.description,
             "themeId": parseInt(req.body.themeId)
         };
         fs.writeFile(path,JSON.stringify(quizzes),'utf8',function (err) {

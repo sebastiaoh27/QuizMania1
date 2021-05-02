@@ -6,8 +6,8 @@ router.get('/', function (req,res,next) {
     res.sendFile("index.html",{root: "./public"})
 })
 
-router.get('/help', function (req,res,next) {
-    res.sendFile("help.html",{root: "./public"})
+router.get('/createQuiz', function (req,res,next) {
+    res.sendFile("createQuiz.html",{root: "./public"})
 })
 
 router.get('/contact', function (req,res,next) {

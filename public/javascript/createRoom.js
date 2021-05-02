@@ -3,14 +3,18 @@
 var req = new XMLHttpRequest();
 
 var create = false;
-var url = "http://localhost:9999"
+
 
 
 function createRoom() {
     sessionStorage.setItem("inRoom",false)
     sessionStorage.setItem("stage", "quiz")
     if (create) {
-      var name = document.getElementById("roomName").value
+        var name = document.getElementById("roomName").value
+        var body = {
+            "name":name
+        }
+
       req.onreadystatechange = function() {
           if (req.readyState == XMLHttpRequest.DONE) {
               var res = JSON.parse(req.responseText)
@@ -25,9 +29,7 @@ function createRoom() {
           }
       }
       req.open("POST",url+"/createRoom",true)
-      var body = {
-          "name":name
-      }
+
       req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       req.send(JSON.stringify(body))
 
@@ -41,7 +43,12 @@ function createRoom() {
                     sessionStorage.setItem("room",JSON.stringify(res))
                     location.href = '/room'
                 } else {
-                    alert("The room code is wrong or the room was deleted!")
+                  var notification = document.querySelector('.mdl-js-snackbar');
+                  notification.MaterialSnackbar.showSnackbar(
+                  {
+                    message: 'The room code is wrong or the room was deleted!'
+                  }
+                  );
                 }
 
             }

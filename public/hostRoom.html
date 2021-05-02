@@ -29,9 +29,9 @@
                 <i class="material-icons icon" style="font-size: 25px">add_circle_outline</i>
                 <div class="button-text">Create / Join</div>
             </li>
-            <li id="help" class="help left-button">
-                <i class="material-icons icon" style="font-size: 25px">help_outline</i>
-                <div class="button-text">Help</div>
+            <li id="createQuiz" class="createQuiz left-button" onclick="goCreateQuiz()">
+                <i class="material-icons icon" style="font-size: 25px">quiz</i>
+                <div class="button-text">Create Quiz</div>
             </li>
             <li id="contact" class="contact left-button">
                 <i class="material-icons icon" style="font-size: 25px">phone</i>
@@ -41,7 +41,7 @@
     </nav>
 </div>
 <div class="center">
-    <div class="center-content">
+    <div class="center-content" style="grid-auto-columns: 1fr">
       <div id="title" class="title">
           <i id="open-menu" class="material-icons outer-menu menu-buttons" style="font-size: 35px" onclick="openMenu()">menu</i>
           <h1 id="header" class="header">password</h1>
@@ -52,15 +52,34 @@
               </div>
           </div>
       </div>
-      <div id="content" class="content">
-        <div class="quizBox">
-          <ul id="quizBox" class="demo-list-three mdl-list quizContainer">
-          </ul>
+        <div id="quizArea">
+            <div id="selector-box" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label selector">
+                <input type="text" value="" class="mdl-textfield__input" id="selector" readonly="">
+                <input id="selector-toggle" type="hidden" value="" name="selector">
+                <i id="selector-icon" class="mdl-icon-toggle__label material-icons selector-icon">keyboard_arrow_down</i>
+                <label id="selector-label" for="selector" class="mdl-textfield__label">All</label>
+                <ul for="selector" class="mdl-menu mdl-menu--bottom-left mdl-js-menu ">
+                    <li class="mdl-menu__item" id="0" onclick="selectTheme(this.id)">All</li>
+                    <li class="mdl-menu__item" id="1" onclick="selectTheme(this.id)">Geography</li>
+                    <li class="mdl-menu__item" id="2" onclick="selectTheme(this.id)">Science</li>
+                    <li class="mdl-menu__item" id="3" onclick="selectTheme(this.id)">Arts</li>
+                    <li class="mdl-menu__item" id="4" onclick="selectTheme(this.id)">History</li>
+                    <li class="mdl-menu__item" id="5" onclick="selectTheme(this.id)">Entertainment</li>
+                    <li class="mdl-menu__item" id="6" onclick="selectTheme(this.id)">Sports</li>
+                </ul>
+            </div>
+            <div id="content" class="content">
+                <div class="quizBox">
+                    <ul id="quizBox" class="demo-list-three mdl-list quizContainer" style="height: 50vh">
+                    </ul>
+                </div>
+                <button id="quizPage"onclick="quizPage()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Quiz Page
+                </button>
+            </div>
+
         </div>
-      </div>
-      <button id="quizPage"onclick="quizPage()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Quiz Page
-      </button>
+
     </div>
     <div id="right" class="right">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
@@ -86,5 +105,8 @@
 <script src="javascript/menu.js"></script>
 <script src="javascript/room.js"></script>
 <script src="javascript/hostRoom.js"></script>
+
+
+</script>
 
 </html>

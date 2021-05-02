@@ -1,4 +1,4 @@
-
+var url = "http://localhost:9999"
 
 function openMenu() {
     document.getElementById("title").style.zIndex = "0"
@@ -43,8 +43,8 @@ function goHome() {
 function goCreateRoom() {
     location.href = '/createRoom'
 }
-function goHelp() {
-    location.href = '/help'
+function goCreateQuiz() {
+    location.href = '/createQuiz'
 }
 function goContact() {
     location.href = '/contact'
@@ -69,5 +69,28 @@ function copyToClipboard() {
 function goHostRoom() {
     location.href = '/hostRoom'
     sessionStorage.setItem("stage","quiz")
+}
+
+function post(urlString,body,callback) {
+    var req = new XMLHttpRequest()
+    req.onreadystatechange = callback
+    req.open("POST",url+urlString,true);
+    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    req.send(JSON.stringify(body));
+}
+
+function patch(urlString,body,callback) {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = callback
+    req.open("PATCH",url+urlString,true);
+    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    req.send(JSON.stringify(body));
+}
+
+function get(urlString,callback) {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = callback
+    req.open("GET",url+urlString,true);
+    req.send();
 }
 

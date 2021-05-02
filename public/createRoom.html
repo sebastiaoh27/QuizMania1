@@ -29,9 +29,9 @@
         <i class="material-icons icon" style="font-size: 25px">add_circle_outline</i>
         <div class="button-text">Create / Join</div>
       </li>
-      <li id="help" class="help left-button">
-        <i class="material-icons icon" style="font-size: 25px">help_outline</i>
-        <div class="button-text">Help</div>
+      <li id="createQuiz" class="createQuiz left-button" onclick="goCreateQuiz()">
+        <i class="material-icons icon" style="font-size: 25px">quiz</i>
+        <div class="button-text">Create Quiz</div>
       </li>
       <li id="contact" class="contact left-button">
         <i class="material-icons icon" style="font-size: 25px">phone</i>
@@ -49,7 +49,7 @@
   <div id="content">
     <div class="inputBox">
       <div class="createRoom">
-        <div class="mdl-textfield mdl-js-textfield input">
+        <div class="mdl-textfield mdl-js-textfield input mdl-textfield--floating-label">
           <input class="mdl-textfield__input" type="text" id="roomName">
           <label id="roomInput"class="mdl-textfield__label" for="roomName">Input room code...</label>
         </div>
@@ -82,6 +82,10 @@
       <button onclick="goHostRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Join Room
       </button>
+    </div>
+    <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button type="button" class="mdl-snackbar__action"></button>
     </div>
 
 </div>
