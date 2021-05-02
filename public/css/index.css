@@ -1,20 +1,26 @@
+
+
 .header {
-  margin: 0;
+
   font-family: 'Noto Serif JP',serif;
   font-size: 100px;
   text-align: center;
+  margin: 0 2% 0 30%;
 }
 
-.description {
-  font-family: 'Noto Serif JP',serif;
+.content {
+  grid-row-gap: 0;
   font-size: 40px;
   padding: 0 20%;
   text-align: center;
+  font-family: "Helvetica","Arial",sans-serif;
 }
 
 #title {
   transition: 0.5s;
   z-index: 2;
+  display: flex;
+
 }
 
 
@@ -25,17 +31,81 @@
   margin: 0;
   transition: 0.5s
 }
-
 .center {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr 0.18fr;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+}
+
+
+span.questionTitle {
+  margin-top: 5vh;
+  font-size: 50px;
+}
+
+#timer {
+  width: 100%;
+  height: 4px;
+  display: block;
+  position: relative;
+}
+
+.progress>.progressBar {
+  background-color: #3f51b5;
+  z-index: 1;
+  left: 0;
+}
+
+.progress>.bufferBar {
+  background-image: linear-gradient(to right,rgba(255,255,255,.7),rgba(255,255,255,.7)),linear-gradient(to right,#3f51b5 ,#3f51b5);
+  z-index: 0;
+  left: 0;
+}
+
+.progress>.bar {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  height: 100%;
+  transition: width .2s cubic-bezier(.4,0,.2,1);
+}
+
+.center-content {
   height: 100%;
   width: 100%;
   display: grid;
   grid-auto-flow: row;
-  grid-auto-columns: 1fr;
+  grid-auto-rows: 0.25fr 1fr;
   grid-column-gap: 0;
-  grid-row-gap: 16px;
-  grid-template-rows: 220px;
+  grid-row-gap: 0;
+  grid-template-rows: 190px;
   transition: 0.5s;
+}
+
+div.selector {
+  margin-left: 122.5vh;
+  width: 16.5vh;
+
+}
+
+div.selector :hover {
+  cursor: pointer;
+}
+
+.inputBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 400px
+}
+
+#createJoin{
+  margin: 0;
+  padding: 0;
 }
 
 #description {
@@ -101,6 +171,29 @@
   margin: 0;
 }
 
+.createRoom {
+
+  padding: 5% 5%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.loading{
+  margin: 10% 0;
+  display: grid;
+}
+
+.spin{
+  margin-top: 5%;
+  margin-left: 48%
+}
+
+#quizPage {
+  width: 100%;
+}
+
 
 .icon {
   margin-left: 10%;
@@ -113,15 +206,103 @@
   cursor: pointer;
 }
 
+#passwordContainer {
+  visibility: hidden;
+  padding: 0 20%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 0 200px
+
+}
+#answers, #winners{
+  width: 100%;
+}
+.answer, .winner {
+  width: 100%;
+}
 
 
+.quiz:hover, .answer:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+.passwordText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+}
 
+#quizBox {
+  border-top: black;
+  border-top-style:solid;
+  overflow-y:auto;
+  max-height: 60vh
+}
 
+#players {
+  overflow-y:auto;
+  max-height: 83vh;
+}
 
+.quiz {
+  text-align: left;
+}
 
+.clipBoard {
+  margin-top: 4%
+}
 
+.clipBoard :hover {
 
+  cursor: pointer;
+  color: aquamarine;
+}
 
+#roomAction {
+  background-color: red
+}
 
+#password {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 20px;
+  margin-right: 25%;
+}
 
+i.selector-icon {
+  float: right;
+  margin-top: -30px;
+  color: rgba(0,0,0,.4);
+  transform: rotate(0);
+  transition: transform 0.3s;
+}
 
+.selector.is-focused .selector-icon{
+  color: #3f51b5;
+  transform: rotate(180deg);
+}
+
+.newQuiz {
+  text-align: center;
+}
+
+i.newQuizLogo{
+  font-size: 30px;
+  margin-left: 48%;
+}
+
+#quizCreation {
+  width: 100vh;
+  padding: 0;
+
+}
+
+li.questionMaker {
+  display: grid;
+  transition: 0.5s;
+}
+
+li.answerCreator {
+  display: flex;
+}

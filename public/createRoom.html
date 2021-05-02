@@ -2,38 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuizMania</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-teal.min.css">
 </head>
-<body>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<body id="body" class="body">
 <div class = "left" id="left">
-  <ul class="left-content">
-    <li class="menu">
-      <i id="close-menu" class="material-icons menu-buttons" style="font-size: 35px" onclick="closeMenu()">menu</i>
-    </li>
-    <li id="home" class="home left-button">
-      <i class="material-icons icon" style="font-size: 25px">home</i>
-      <div class="button-text">Home</div>
-    </li>
-    <li id="create-room" class="create-room left-button">
-      <i class="material-icons icon" style="font-size: 25px">add_circle_outline</i>
-      <div class="button-text">Create Room</div>
-    </li>
-    <li id="help" class="help left-button">
-      <i class="material-icons icon" style="font-size: 25px">help_outline</i>
-      <div class="button-text">Help</div>
-    </li>
-    <li id="contact" class="contact left-button">
-      <i class="material-icons icon" style="font-size: 25px">phone</i>
-      <div class="button-text">Contact Us</div>
-    </li>
-  </ul>
-</div>
+  <nav>
+    <ul class="left-content">
+      <li class="menu">
+        <i id="close-menu" class="material-icons menu-buttons" style="font-size: 35px" onclick="closeMenu()">menu</i>
+      </li>
+      <li id="home" class="home left-button" onclick="goHome()">
+        <i class="material-icons icon" style="font-size: 25px">home</i>
+        <div class="button-text">Home</div>
+      </li>
+      <li id="create-room" class="create-room left-button" onclick="goCreateRoom()">
+        <i class="material-icons icon" style="font-size: 25px">add_circle_outline</i>
+        <div class="button-text">Create / Join</div>
+      </li>
+      <li id="createQuiz" class="createQuiz left-button" onclick="goCreateQuiz()">
+        <i class="material-icons icon" style="font-size: 25px">quiz</i>
+        <div class="button-text">Create Quiz</div>
+      </li>
+      <li id="contact" class="contact left-button">
+        <i class="material-icons icon" style="font-size: 25px">phone</i>
+        <div class="button-text">Contact Us</div>
+      </li>
+    </ul>
+  </nav>
 
+</div>
+<div class="center-content">
+  <div id="title" class="title">
+    <i id="open-menu" class="material-icons outer-menu menu-buttons" style="font-size: 35px" onclick="openMenu()">menu</i>
+    <h1 id="header" class="header">Join Room</h1>
+  </div>
+  <div id="content">
+    <div class="inputBox">
+      <div class="createRoom">
+        <div class="mdl-textfield mdl-js-textfield input mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="roomName">
+          <label id="roomInput"class="mdl-textfield__label" for="roomName">Input room code...</label>
+        </div>
+        <button id="roomAction"onclick="createRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Join
+        </button>
+      </div>
+      <div id="createJoin" class="createRoom">
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+          <input type="radio" id="option-1" onclick="joinCreate()" class="mdl-radio__button" name="options" value="1" checked>
+          <span class="mdl-radio__label">Join</span>
+        </label>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+          <input type="radio" id="option-2" onclick="joinCreate()"class="mdl-radio__button" name="options" value="2">
+          <span class="mdl-radio__label">Create</span>
+        </label>
+      </div>
+    </div>
+
+    <div id="passwordContainer">
+      <div class="passwordText">
+        <span id="password">test</span>
+        <div class="clipBoard">
+          <div id="tt3" class="icon material-icons" onclick="copyToClipboard()">content_copy</div>
+          <div class="mdl-tooltip" data-mdl-for="tt3">
+            Copy to clipboard
+          </div>
+        </div>
+      </div>
+      <button onclick="goHostRoom()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Join Room
+      </button>
+    </div>
+    <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button type="button" class="mdl-snackbar__action"></button>
+    </div>
+
+</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="javascript/createRoom.js"></script>
+<script src="javascript/menu.js"></script>
 </body>
 </html>

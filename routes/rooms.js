@@ -1,9 +1,10 @@
 var express = require('express');
 var router =express.Router();
 var fs = require('fs');
+var PasswordMaker = require('./../utilities/passwordMaker')
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
+var pm = new PasswordMaker();
 var path = "./public/database/rooms.json"
 
 var id = 0;
@@ -20,7 +21,8 @@ router.post('/createRoom',urlencodedParser,function (req,res) {
         rooms["room" + id] = {
             "id":id,
             "name": req.body.name,
-            "selectedQuiz":-1
+            "selectedQuiz":-1,
+            "password": pm.generatePassword()
         };
         console.log(rooms["room"+id])
         fs.writeFile(path,JSON.stringify(rooms),'utf8',function (err) {
@@ -33,6 +35,19 @@ router.post('/createRoom',urlencodedParser,function (req,res) {
 })
 
 //Read
+router.get('/joinRoom/:password',function (req,res) {
+    fs.readFile(path,'utf8',function (err,data) {
+        var rooms = JSON.parse(data);
+        var r = null;
+        for (var room in rooms) {
+            if (rooms[room].password === req.params.password) {
+                r = rooms[room];
+                break;
+            }
+        }
+        res.end(JSON.stringify(r));
+    })
+})
 
 router.get('/rooms',function (req,res) {
         fs.readFile(path, 'utf8',function (err,data){

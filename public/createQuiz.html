@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizMania</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-teal.min.css">
+</head>
+<body id="body" class="body">
+<div class = "left" id="left">
+  <nav>
+    <ul class="left-content">
+      <li class="menu">
+        <i id="close-menu" class="material-icons menu-buttons" style="font-size: 35px" onclick="closeMenu()">menu</i>
+      </li>
+      <li id="home" class="home left-button" onclick="goHome()">
+        <i class="material-icons icon" style="font-size: 25px">home</i>
+        <div class="button-text">Home</div>
+      </li>
+      <li id="create-room" class="create-room left-button" onclick="goCreateRoom()">
+        <i class="material-icons icon" style="font-size: 25px">add_circle_outline</i>
+        <div class="button-text">Create / Join</div>
+      </li>
+      <li id="createQuiz" class="createQuiz left-button" onclick="goCreateQuiz()">
+        <i class="material-icons icon" style="font-size: 25px">quiz</i>
+        <div class="button-text">Create Quiz</div>
+      </li>
+      <li id="contact" class="contact left-button">
+        <i class="material-icons icon" style="font-size: 25px">phone</i>
+        <div class="button-text">Contact Us</div>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="center-content">
+  <div id="title" class="title">
+    <i id="open-menu" class="material-icons outer-menu menu-buttons" style="font-size: 35px" onclick="openMenu()">menu</i>
+    <h1 id="header" class="header">Create Quiz</h1>
+  </div>
+  <div id="content">
+    <div class="inputBox">
+      <div id="quizCreatorBox" class="createRoom" style="padding-top: 0">
+        <div class="mdl-textfield mdl-js-textfield input mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="quizName">
+          <label id="roomInput" class="mdl-textfield__label" for="quizName">Input Quiz name...</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield input mdl-textfield--floating-label">
+          <textarea class="mdl-textfield__input" type="text" rows= "3" id="quizDesc" ></textarea>
+          <label id="roomDesc" class="mdl-textfield__label" for="quizDesc">Input Quiz description...</label>
+        </div>
+        <div id="selector-box" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label selector" style="margin-left: 13vh">
+          <input type="text" value="" class="mdl-textfield__input" id="selector" readonly="">
+          <input id="selector-toggle" type="hidden" value="" name="selector">
+          <i id="selector-icon" class="mdl-icon-toggle__label material-icons selector-icon">keyboard_arrow_down</i>
+          <label id="selector-label" for="selector" class="mdl-textfield__label">Theme</label>
+          <ul for="selector" class="mdl-menu mdl-menu--bottom-left mdl-js-menu ">
+            <li class="mdl-menu__item" id="0" onclick="selectTheme(this.id)">Geography</li>
+            <li class="mdl-menu__item" id="1" onclick="selectTheme(this.id)">Science</li>
+            <li class="mdl-menu__item" id="2" onclick="selectTheme(this.id)">Arts</li>
+            <li class="mdl-menu__item" id="3" onclick="selectTheme(this.id)">History</li>
+            <li class="mdl-menu__item" id="4" onclick="selectTheme(this.id)">Entertainment</li>
+            <li class="mdl-menu__item" id="5" onclick="selectTheme(this.id)">Sports</li>
+          </ul>
+        </div>
+        <button id="roomAction" onclick="createQuiz()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Create
+        </button>
+      </div>
+    </div>
+    <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button type="button" class="mdl-snackbar__action"></button>
+    </div>
+
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="javascript/createQuiz.js"></script>
+<script src="javascript/menu.js"></script>
+</body>
+</html>

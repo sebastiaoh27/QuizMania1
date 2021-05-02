@@ -20,16 +20,20 @@ const io = require('socket.io')(server);
 server.listen(9999);
 app.use(express.static(__dirname + '/public'))
 app.get('/',indexRouter);
-app.get('/help',indexRouter);
+app.get('/createQuiz',indexRouter);
 app.get('/contact',indexRouter);
 app.get('/createRoom',indexRouter);
+app.get('/room',indexRouter);
+app.get('/hostRoom',indexRouter);
 
 //room
 app.get('/rooms',roomRest);
 app.get('/room/:id',roomRest)
+app.get('/joinRoom/:password',roomRest)
 app.post('/createRoom',roomRest)
 app.patch('/selectQuiz/:id',roomRest)
 app.delete('/deleteRoom/:id',roomRest)
+
 
 //user
 app.post('/createUser',userRest);
@@ -73,10 +77,31 @@ app.get('/theme/:id',themeRest)
 app.patch('/editTheme/:id',themeRest)
 app.delete('/deleteTheme/:id',themeRest)
 
+var clientId = 0
+io.on("connection", (client) => {
+    var c = client
+    c.id = clientId++
+    console.log(c.id)
+    client.on("updateClient",(user)=>{
+        console.log("updateServer")
+        client.broadcast.emit("updateServer",user)
+    })
 
-io.on("connection", client => {
-    client.send("test")
-    console.log("connected")
+    client.on("quizSet",()=>{
+        client.broadcast.emit("quizStart")
+    })
+
+    client.on("quizSelected",(res)=>{
+        client.broadcast.emit("updateQuiz",res)
+    })
+
+    client.on("quizPage",()=>{
+        client.broadcast.emit("quizChoose")
+    })
+
+    client.on("pointsUpdate",(user)=>{
+        client.broadcast.emit("addPoints",user)
+    })
 })
 
 
