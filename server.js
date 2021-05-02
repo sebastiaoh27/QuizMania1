@@ -8,6 +8,7 @@ var quizRest = require("./routes/quizzes")
 var questionRest = require("./routes/questions")
 var answerRest = require("./routes/answers")
 var themeRest = require("./routes/themes")
+var url = "QuizMania/public/"
 
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
@@ -19,12 +20,12 @@ const io = require('socket.io')(server);
 
 server.listen(9999);
 app.use(express.static(__dirname + '/public'))
-app.get('/',indexRouter);
-app.get('/createQuiz',indexRouter);
-app.get('/contact',indexRouter);
-app.get('/createRoom',indexRouter);
-app.get('/room',indexRouter);
-app.get('/hostRoom',indexRouter);
+app.get(url+'/',indexRouter);
+app.get(url+'/createQuiz',indexRouter);
+app.get(url+'/contact',indexRouter);
+app.get(url+'/createRoom',indexRouter);
+app.get(url+'/room',indexRouter);
+app.get(url+'/hostRoom',indexRouter);
 
 //room
 app.get('/rooms',roomRest);

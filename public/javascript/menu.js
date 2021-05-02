@@ -36,18 +36,19 @@ function closeMenu() {
 
     console.log("close")
 }
-
+var url = "QuizMania/public/"
 function goHome() {
-    location.href = '/'
+    location.href = url+'/'
 }
 function goCreateRoom() {
-    location.href = '/createRoom'
+    
+    location.href = url+'/createRoom'
 }
 function goCreateQuiz() {
-    location.href = '/createQuiz'
+    location.href = url+'/createQuiz'
 }
 function goContact() {
-    location.href = '/contact'
+    location.href = url+'/contact'
 }
 
 function copyToClipboard() {
